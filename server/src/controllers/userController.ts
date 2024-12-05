@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export const getUser = async (req: Request , res: Response): Promise<void> => {
+export const getUsers = async (req: Request , res: Response): Promise<void> => {
     try {
         const users = await prisma.users.findMany();
         res.status(200).json(users);
