@@ -16,14 +16,14 @@ const getExpenseByCategory = (req, res) => __awaiter(void 0, void 0, void 0, fun
     try {
         const expenseByCategory = yield prisma.expenseByCategory.findMany({
             orderBy: {
-                date: "desc"
+                date: "desc",
             },
         });
         const expenseByCategorySummary = expenseByCategory.map((item) => (Object.assign(Object.assign({}, item), { amount: item.amount.toString() })));
         res.status(200).json(expenseByCategorySummary);
     }
     catch (error) {
-        res.status(500).json({ message: "Error fetching expences" });
+        res.status(500).json({ message: "Error fetching expenses" });
     }
 });
 exports.getExpenseByCategory = getExpenseByCategory;

@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { get } from "http";
 
 export interface Product {
   productId: number;
@@ -59,7 +60,7 @@ export interface User {
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
   reducerPath: "api",
-  tagTypes: ["DashboardMetrics", "Products", "Users" , "ExpensesByCategory"],
+  tagTypes: ["DashboardMetrics", "Products", "Users" , "Expenses"],
   endpoints: (build) => ({
     getDashboardMetrics: build.query<DashboardMetrics, void>({
       query: () => "/dashboard",
@@ -86,7 +87,7 @@ export const api = createApi({
     }),
     getExpensesByCategory: build.query<ExpenseByCategorySummary[], void>({
       query: () => "/expenses",
-      providesTags: ["ExpensesByCategory"],
+      providesTags: ["Expenses"],
     }),
   }),
 });
